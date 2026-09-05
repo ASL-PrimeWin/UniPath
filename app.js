@@ -1,0 +1,1 @@
+function goSearch(){const q=document.getElementById('heroSearch').value.trim();location.href='colleges.html'+(q?'?q='+encodeURIComponent(q):'')}
