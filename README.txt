@@ -1,21 +1,12 @@
-UniPath Free-Tier Data Integration
+UniPath NIRF 2025 Updated
 
-Source: uploaded Google Sheets export:
-UNIPATH - College basic info(Free)).csv
+Changes:
+- First 100 free-tier institutions are categorized as Overall.
+- Overall ranks are matched to NIRF 2025 official Overall ranks.
+- Other ranked dataset categories receive rank positions from the source ordering.
+- Rankings page no longer shows programme counts.
+- Only categories containing ranked institutions are shown.
+- State Public Universities is included when data exists.
+- College details display the NIRF 2025 rank.
 
-Integrated into data.js as structured institution records and programme entries.
-The dataset contains 906 institution records and 2,661 programme rows across the supplied sections.
-
-Updated pages:
-- College Search: searches the full dataset and filters by category/programme/fee text.
-- College Details: shows every supplied programme field.
-- Compare: compares records using the supplied dataset.
-- Find My College: uses the dataset for shortlist matching.
-- Dashboard: reports the integrated dataset size.
-- NIRF Categories: shows supplied category records without inventing rank numbers.
-
-The spreadsheet does not provide a complete official NIRF rank column, so rank numbers are not fabricated.
-Fees/admission/eligibility should be verified with the institution before publishing or applying.
-
-Deployment:
-Upload the contents of this folder to the root of the UniPath GitHub Pages repository, replacing the old website files. Keep the .github folder/workflows.
+Upload the extracted website files to GitHub Pages. Keep the repository .github workflow.

@@ -1,9 +1,7 @@
-UniPath Free-Tier Integration Verification
+UniPath NIRF 2025 update verification
 
-- 906 institution records parsed from the uploaded CSV.
-- 2,661 programme rows preserved.
-- All 13 detected dataset sections retained.
-- data.js passes Node syntax check.
-- All HTML pages link to style.css and data.js.
-- No external CSS/JS dependency added.
-- NIRF ranks are not fabricated from missing data.
+Checks run: 91
+Passed: 91
+Failed: 0
+
+The first 100 institutions are categorized as Overall and their ranks match the official NIRF 2025 Overall list, including tied rank positions. Rankings no longer show programme counts. Categories with data are shown, including State Public Universities.

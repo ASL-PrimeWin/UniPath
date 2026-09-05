@@ -1,6 +1,6 @@
 function nav(){
   return `<header class="navbar">
-    <a class="logo" href="index.html">UNI<span>PATH</span><small>FIND YOUR RIGHT PATH</small></a>
+    <a class="logo" href="index.html" aria-label="NIPATH home"><img src="nipath-logo.png" alt="NIPATH - Find Your Right Path"></a>
     <nav class="nav-links">
       <a href="index.html">Home</a>
       <a href="colleges.html">Colleges</a>
@@ -10,15 +10,15 @@ function nav(){
       <a href="dashboard.html">Dashboard</a>
     </nav>
     <div class="nav-actions">
-      <a class="btn light" href="dashboard.html">Login</a>
-      <a class="btn" href="dashboard.html">Get Premium</a>
+      <a class="btn login-btn" href="dashboard.html">Login / Sign Up</a>
+      <a class="btn premium-nav-btn" href="premium.html">Get Premium</a>
     </div>
   </header>`;
 }
 
 function foot(){
   return `<footer><div class="container footer-inner">
-    <div><div class="footer-logo">UNI<span>PATH</span></div><div>Find your right path.</div></div>
+    <div><div class="footer-logo">NIPATH</div><div>Find your right path.</div></div>
     <div>© 2026 UniPath · Student-first college discovery</div>
   </div></footer>`;
 }
