@@ -1,9 +1,11 @@
-UniPath Free-Tier Integration Verification
-
-- 906 institution records parsed from the uploaded CSV.
-- 2,661 programme rows preserved.
-- All 13 detected dataset sections retained.
-- data.js passes Node syntax check.
-- All HTML pages link to style.css and data.js.
-- No external CSS/JS dependency added.
-- NIRF ranks are not fabricated from missing data.
+UniPath upgraded verification
+- Full uploaded free-tier dataset retained in data.js
+- 906 institution records
+- 2,661 programme entries
+- Added premium.html and changed Get Premium links to it
+- Rebuilt Find My College as a 7-question requirement-based matcher
+- Matcher ranks institutions from the full dataset and stores matches in localStorage
+- Local HTML references checked
+- app.js and data.js syntax checked with Node
+- Inline JavaScript in all HTML pages syntax checked
+- Existing pages and shared navigation retained
