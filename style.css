@@ -1,7 +1,3 @@
-/* ================================
-   UNIPATH - GLOBAL STYLES
-   ================================ */
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -15,662 +11,272 @@ html {
 body {
   font-family: Arial, Helvetica, sans-serif;
   background: #f5f7fb;
-  color: #172033;
+  color: #17243b;
   line-height: 1.6;
 }
 
-/* ================================
-   NAVBAR
-   ================================ */
+a {
+  text-decoration: none;
+  color: inherit;
+}
 
-.nav,
-.navbar {
-  width: 100%;
+/* ================= NAVBAR ================= */
+
+.nav {
   min-height: 72px;
   background: #071b3a;
-  color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 6%;
-  position: relative;
-  z-index: 20;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  gap: 30px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
 }
 
-.brand,
-.logo {
+.brand {
   color: white;
-  text-decoration: none;
   font-size: 23px;
-  font-weight: 800;
-  letter-spacing: -0.5px;
+  font-weight: 900;
+  line-height: 18px;
+  min-width: 220px;
 }
 
-.nav a {
-  text-decoration: none;
+.brand span {
+  color: #438aff;
 }
 
-.nav nav,
-.nav-links,
-.nav-buttons {
+.brand small {
+  display: block;
+  font-size: 8px;
+  letter-spacing: 1.5px;
+  color: #cbd7e8;
+  margin-top: 7px;
+}
+
+.nav nav {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
-.nav a:not(.brand) {
-  color: #e8eef9;
-  padding: 9px 12px;
-  border-radius: 8px;
+.nav nav a {
+  color: #dce5f2;
   font-size: 14px;
+  font-weight: 700;
+  padding: 25px 12px;
+  border-bottom: 2px solid transparent;
   transition: 0.2s;
 }
 
-.nav a:not(.brand):hover {
-  background: rgba(255,255,255,0.1);
+.nav nav a:hover {
   color: white;
+  border-bottom-color: #438aff;
 }
 
-/* ================================
-   PAGE CONTAINER
-   ================================ */
+/* ================= PAGE ================= */
 
-main,
-.container,
-.page,
-.content {
-  width: min(1200px, 92%);
+body > section {
+  width: min(1200px, 88%);
   margin: auto;
+  padding: 55px 0 70px;
 }
 
-main {
-  padding: 55px 0 80px;
-}
-
-/* ================================
-   HEADINGS
-   ================================ */
-
-h1 {
-  font-size: clamp(32px, 5vw, 48px);
-  line-height: 1.1;
-  color: #071b3a;
-  margin-bottom: 14px;
-}
-
-h2 {
-  font-size: 30px;
-  color: #071b3a;
+.eyebrow {
+  display: inline-block;
+  color: #3478f6;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 2px;
   margin-bottom: 12px;
 }
 
-h3 {
-  font-size: 22px;
+section h1 {
   color: #071b3a;
-  margin-bottom: 8px;
+  font-size: 46px;
+  line-height: 1.1;
+  margin-bottom: 12px;
 }
 
-p {
-  color: #536174;
+section > p {
+  color: #657287;
+  font-size: 17px;
 }
 
-.page-title {
-  margin-bottom: 35px;
-}
+/* ================= FILTER PANEL ================= */
 
-/* ================================
-   BUTTONS
-   ================================ */
-
-button,
-.btn,
-.bluebtn,
-.whitebtn {
-  border: none;
-  border-radius: 8px;
-  padding: 10px 17px;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-button,
-.btn,
-.bluebtn {
-  background: #1769e0;
-  color: white;
-}
-
-button:hover,
-.btn:hover,
-.bluebtn:hover {
-  background: #0d55bd;
-  transform: translateY(-1px);
-}
-
-.whitebtn {
+.panel {
   background: white;
-  color: #1769e0;
-  border: 1px solid #d8e1ef;
-}
-
-.whitebtn:hover {
-  background: #f1f5fb;
-}
-
-/* ================================
-   FILTER / SEARCH AREA
-   ================================ */
-
-.panel,
-.filters,
-.filter-panel {
-  background: white;
-  border: 1px solid #e1e7f0;
-  border-radius: 14px;
+  border: 1px solid #e0e6ef;
+  border-radius: 15px;
   padding: 22px;
-  margin-bottom: 30px;
-  box-shadow: 0 5px 18px rgba(20,40,80,0.06);
+  box-shadow: 0 7px 25px rgba(20,40,80,0.07);
 }
 
-.field,
-input,
-select {
-  font-family: inherit;
+aside.panel {
+  height: fit-content;
 }
 
-input,
-select {
+.field {
+  width: 100%;
+  display: block;
   background: white;
-  color: #172033;
+  color: #17243b;
   border: 1px solid #ccd5e3;
-  border-radius: 7px;
+  border-radius: 8px;
   padding: 11px 12px;
+  margin-bottom: 12px;
+  font-family: inherit;
   font-size: 14px;
   outline: none;
 }
 
-input:focus,
-select:focus {
-  border-color: #1769e0;
-  box-shadow: 0 0 0 3px rgba(23,105,224,0.1);
+.field:focus {
+  border-color: #3478f6;
+  box-shadow: 0 0 0 3px rgba(52,120,246,0.12);
 }
 
-input {
-  width: 100%;
-}
+/* ================= BUTTONS ================= */
 
-select {
-  min-width: 160px;
-}
-
-.filters {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr auto;
-  gap: 12px;
-  align-items: end;
-}
-
-.filters label,
-.field label {
-  display: block;
+.btn {
+  display: inline-block;
+  background: #3478f6;
+  color: white !important;
+  border: 0;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-family: inherit;
   font-size: 13px;
-  font-weight: 700;
-  color: #3e4b60;
-  margin-bottom: 6px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
-/* ================================
-   RESULTS
-   ================================ */
+.btn:hover {
+  background: #2164d8;
+  transform: translateY(-1px);
+}
+
+.btn.secondary {
+  background: #edf3ff;
+  color: #1769e0 !important;
+  border: 1px solid #d7e4ff;
+}
+
+.btn.secondary:hover {
+  background: #dfeaff;
+}
+
+/* ================= RESULTS ================= */
 
 #results {
-  display: grid;
-  gap: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+#results > p {
+  color: #536174;
+  font-size: 15px;
+  margin-bottom: 2px;
 }
 
 .result {
-  background: white;
-  border: 1px solid #e1e7f0;
-  border-radius: 14px;
-  padding: 25px;
-  box-shadow: 0 5px 18px rgba(20,40,80,0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+  padding: 24px;
   transition: 0.2s;
 }
 
 .result:hover {
   transform: translateY(-2px);
-  box-shadow: 0 9px 25px rgba(20,40,80,0.1);
+  box-shadow: 0 12px 30px rgba(20,40,80,0.11);
 }
 
-.result h2,
-.result h3 {
+.result h2 {
   color: #071b3a;
+  font-size: 23px;
+  margin: 5px 0 7px;
 }
 
 .result p {
-  margin: 8px 0;
+  color: #647188;
+  font-size: 14px;
+  margin: 5px 0;
 }
 
-.result .rank {
-  color: #1769e0;
-  font-weight: 800;
+.rank {
+  color: #3478f6;
+  font-size: 14px;
+  font-weight: 900;
 }
 
-/* ================================
-   COLLEGE CARDS
-   ================================ */
-
-.card,
-.college-card,
-.feature-card {
-  background: white;
-  border-radius: 14px;
-  border: 1px solid #e1e7f0;
-  padding: 24px;
-  box-shadow: 0 5px 18px rgba(20,40,80,0.05);
-}
-
-.card:hover,
-.college-card:hover {
-  box-shadow: 0 10px 25px rgba(20,40,80,0.09);
-}
-
-.cards,
-.card-grid,
-.college-grid,
-.features {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-
-/* ================================
-   COLLEGE DETAILS
-   ================================ */
-
-.college-header {
-  background: #071b3a;
-  color: white;
-  border-radius: 16px;
-  padding: 35px;
-  margin-bottom: 25px;
-}
-
-.college-header h1,
-.college-header h2,
-.college-header h3,
-.college-header p {
-  color: white;
-}
-
-.details-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 22px;
-}
-
-.detail-card {
-  background: white;
-  border: 1px solid #e1e7f0;
-  border-radius: 14px;
-  padding: 25px;
-}
-
-/* ================================
-   RANKINGS
-   ================================ */
-
-.ranking-list {
-  display: grid;
-  gap: 14px;
-}
-
-.ranking-card {
-  display: grid;
-  grid-template-columns: 70px 1fr auto;
-  align-items: center;
-  gap: 20px;
-  background: white;
-  border: 1px solid #e1e7f0;
-  border-radius: 13px;
-  padding: 20px;
-}
-
-.rank-number {
-  font-size: 25px;
-  font-weight: 800;
-  color: #1769e0;
-}
-
-/* ================================
-   BADGES
-   ================================ */
-
-.badge,
-.tag {
-  display: inline-block;
-  background: #eaf2ff;
-  color: #1769e0;
-  border-radius: 20px;
-  padding: 5px 10px;
-  font-size: 12px;
-  font-weight: 700;
-  margin: 3px;
-}
-
-/* ================================
-   EXAMS / CALENDAR
-   ================================ */
-
-.exam-grid,
-.calendar-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-}
-
-.exam-card,
-.calendar-card {
-  background: white;
-  border: 1px solid #e1e7f0;
-  border-radius: 14px;
-  padding: 23px;
-}
-
-.exam-card h3,
-.calendar-card h3 {
-  color: #071b3a;
-}
-
-.date {
-  color: #1769e0;
-  font-weight: 800;
-}
-
-/* ================================
-   FIND MY COLLEGE
-   ================================ */
-
-.quiz,
-.quiz-card,
-.question-card {
-  background: white;
-  border: 1px solid #e1e7f0;
-  border-radius: 16px;
-  padding: 30px;
-  box-shadow: 0 5px 20px rgba(20,40,80,0.06);
-}
-
-.quiz-options {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  margin-top: 20px;
-}
-
-.quiz-options button {
-  background: #f3f6fb;
-  color: #172033;
-  border: 1px solid #dce4ef;
-}
-
-.quiz-options button:hover {
-  background: #eaf2ff;
-  color: #1769e0;
-}
-
-/* ================================
-   DASHBOARD
-   ================================ */
-
-.dashboard-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-}
-
-.stat-card {
-  background: white;
-  border: 1px solid #e1e7f0;
-  border-radius: 14px;
-  padding: 22px;
-}
-
-.stat-card strong {
-  display: block;
-  font-size: 30px;
-  color: #1769e0;
-}
-
-/* ================================
-   COMPARISON
-   ================================ */
-
-.compare-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: white;
-  border-radius: 14px;
-  overflow: hidden;
-  border: 1px solid #e1e7f0;
-}
-
-.compare-table th,
-.compare-table td {
-  padding: 15px;
-  text-align: left;
-  border-bottom: 1px solid #e7ebf2;
-}
-
-.compare-table th {
-  background: #071b3a;
-  color: white;
-}
-
-.compare-table tr:hover td {
-  background: #f7f9fc;
-}
-
-/* ================================
-   HERO
-   ================================ */
-
-.hero {
-  min-height: 570px;
-  display: flex;
-  align-items: center;
-  position: relative;
-  background: url("campus-background.png") center/cover;
-  color: white;
-  padding: 70px 7%;
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(4, 22, 48, 0.72);
-}
-
-.hero > * {
-  position: relative;
-  z-index: 2;
-}
-
-.hero h1 {
-  color: white;
-  max-width: 800px;
-}
-
-.hero p {
-  color: #e0e8f5;
-  max-width: 650px;
-  font-size: 18px;
-}
-
-.hero-search {
-  display: flex;
-  max-width: 700px;
-  margin-top: 25px;
-  gap: 10px;
-}
-
-.hero-search input {
-  flex: 1;
-}
-
-/* ================================
-   PREMIUM
-   ================================ */
-
-.premium,
-.premium-section {
-  background: #071b3a;
-  color: white;
-  border-radius: 18px;
-  padding: 40px;
-  margin: 50px 0;
-}
-
-.premium h2,
-.premium h3,
-.premium p,
-.premium-section h2,
-.premium-section h3,
-.premium-section p {
-  color: white;
-}
-
-/* ================================
-   FOOTER
-   ================================ */
+/* ================= FOOTER ================= */
 
 footer {
-  background: #06172f;
+  background: #06172d;
   color: #aebbd0;
-  padding: 40px 7%;
-  margin-top: 60px;
-}
-
-footer a {
-  color: #dce7f7;
-  text-decoration: none;
-}
-
-footer a:hover {
-  color: white;
-}
-
-/* ================================
-   EMPTY STATES
-   ================================ */
-
-.empty,
-.no-results {
-  background: white;
-  border: 1px dashed #cbd5e4;
-  border-radius: 14px;
-  padding: 40px;
+  padding: 30px 6%;
   text-align: center;
-  color: #647188;
+  font-size: 13px;
 }
 
-/* ================================
-   MOBILE
-   ================================ */
+/* ================= RESPONSIVE ================= */
 
 @media (max-width: 900px) {
 
-  .nav,
-  .navbar {
-    padding: 15px 4%;
-    flex-wrap: wrap;
-    gap: 12px;
+  .nav {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 5%;
   }
 
-  .nav nav,
-  .nav-links,
-  .nav-buttons {
+  .nav nav {
     width: 100%;
     flex-wrap: wrap;
   }
 
-  .filters {
-    grid-template-columns: 1fr 1fr;
+  .nav nav a {
+    padding: 8px 10px;
   }
 
-  .cards,
-  .card-grid,
-  .college-grid,
-  .features,
-  .exam-grid,
-  .calendar-grid {
-    grid-template-columns: repeat(2, 1fr);
+  body > section {
+    width: 92%;
   }
 
-  .dashboard-grid {
-    grid-template-columns: repeat(2, 1fr);
+  body > section > div {
+    grid-template-columns: 1fr !important;
   }
 
-  .details-grid {
-    grid-template-columns: 1fr;
+  .result {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
 @media (max-width: 600px) {
 
-  main {
-    padding: 35px 0 60px;
+  section h1 {
+    font-size: 35px;
   }
 
-  h1 {
-    font-size: 34px;
+  .nav nav {
+    gap: 2px;
   }
 
-  h2 {
-    font-size: 25px;
+  .nav nav a {
+    font-size: 12px;
   }
 
-  .filters {
-    grid-template-columns: 1fr;
+  .result {
+    padding: 19px;
   }
 
-  .cards,
-  .card-grid,
-  .college-grid,
-  .features,
-  .exam-grid,
-  .calendar-grid,
-  .quiz-options {
-    grid-template-columns: 1fr;
-  }
-
-  .dashboard-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .ranking-card {
-    grid-template-columns: 50px 1fr;
-  }
-
-  .ranking-card button {
-    grid-column: 2;
-  }
-
-  .hero {
-    min-height: 520px;
-    padding: 50px 5%;
-  }
-
-  .hero-search {
-    flex-direction: column;
-  }
-
-  .premium,
-  .premium-section {
-    padding: 28px;
+  .result h2 {
+    font-size: 20px;
   }
 }
