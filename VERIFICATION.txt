@@ -1,0 +1,8 @@
+{
+  "result": "PASS",
+  "total_checks": 41,
+  "passed": 41,
+  "failed": 0,
+  "inline_scripts_checked": 8,
+  "failures": []
+}
