@@ -1,8 +1,9 @@
-{
-  "result": "PASS",
-  "total_checks": 41,
-  "passed": 41,
-  "failed": 0,
-  "inline_scripts_checked": 8,
-  "failures": []
-}
+UniPath Free-Tier Integration Verification
+
+- 906 institution records parsed from the uploaded CSV.
+- 2,661 programme rows preserved.
+- All 13 detected dataset sections retained.
+- data.js passes Node syntax check.
+- All HTML pages link to style.css and data.js.
+- No external CSS/JS dependency added.
+- NIRF ranks are not fabricated from missing data.
