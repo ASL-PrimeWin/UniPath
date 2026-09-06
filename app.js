@@ -2,9 +2,9 @@ function nav(){
   return `<header class="navbar">
     <a class="logo" href="index.html" aria-label="NIPATH home"><img src="nipath-logo.png" alt="NIPATH - Find Your Right Path"></a>
     <nav class="nav-links">
-      <a href="index.html">Home</a><a href="colleges.html">Colleges</a><a href="rankings.html">NIRF Rankings</a><a href="find.html">Find My College</a><a href="compare.html">Compare</a><a href="exams.html">Exams</a><a href="shortlist.html">Shortlist</a><a href="roadmap.html">Roadmap</a><a href="scholarships.html">Scholarships</a>
+      <a href="index.html">Home</a><a href="colleges.html">Colleges</a><a href="rankings.html">NIRF Rankings</a><a href="find.html">Find My College</a><a href="compare.html">Compare</a><a href="shortlist.html">Shortlist</a><a href="roadmap.html">Roadmap</a><a href="scholarships.html">Scholarships</a>
     </nav>
-    <div class="nav-actions"><a class="btn login-btn" href="login.html">Login / Sign Up</a><a class="btn premium-nav-btn" href="payment.html">Get Premium</a></div>
+    <div class="nav-actions"><a class="btn login-btn" href="dashboard.html">Login / Sign Up</a><a class="btn premium-nav-btn" href="payment.html">Get Premium</a></div>
   </header>`;
 }
 function foot(){return `<footer><div class="container footer-inner"><div><div class="footer-logo">NIPATH</div><div>Find your right path.</div></div><div>© 2026 NIPATH · Student-first college discovery</div></div></footer>`;}

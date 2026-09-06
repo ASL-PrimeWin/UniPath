@@ -1,6 +1,11 @@
-NIPATH enhanced build verification
-Checks run: 205
-Failures: 0
-Status: PASS
-
-Verified: NIPATH homepage visual refresh, local campus illustrations, separate FREE/PRO labels, demo login/register page, branded favicon, navigation, HTML/JS syntax, full dataset counts (906 institutions / 2,661 programmes), local references, and ZIP integrity.
+UniPath upgraded verification
+- Full uploaded free-tier dataset retained in data.js
+- 906 institution records
+- 2,661 programme entries
+- Added premium.html and changed Get Premium links to it
+- Rebuilt Find My College as a 7-question requirement-based matcher
+- Matcher ranks institutions from the full dataset and stores matches in localStorage
+- Local HTML references checked
+- app.js and data.js syntax checked with Node
+- Inline JavaScript in all HTML pages syntax checked
+- Existing pages and shared navigation retained
