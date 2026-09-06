@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NIPATH | Find Your Right College</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="favicon.svg">
+<style>
+/* Home-only refinements. Other pages keep the existing UI unchanged. */
+.home-hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#071a35 0%,#0b2d5b 58%,#0e4b82 100%);color:#fff}
+.home-hero:before{content:"";position:absolute;inset:0;background:url("campus-bg.svg") center/cover no-repeat;opacity:.18;mix-blend-mode:screen}
+.home-hero:after{content:"";position:absolute;width:560px;height:560px;right:-190px;top:-230px;border-radius:50%;background:radial-gradient(circle,rgba(96,165,250,.28),transparent 68%)}
+.home-hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:1.18fr .82fr;gap:48px;align-items:center;padding:78px 0 88px}
+.home-copy{max-width:720px}.home-copy .eyebrow{color:#79b2ff}.home-copy h1{font-size:clamp(43px,6vw,67px);line-height:1.03;letter-spacing:-2.8px;margin:13px 0 17px}.home-copy h1 span{color:#5ea4ff}.home-copy>p{font-size:17px;color:#d1ddec;max-width:650px;margin:0}
+.home-search{display:flex;gap:0;background:#fff;padding:6px;border-radius:13px;max-width:720px;margin-top:25px;box-shadow:0 18px 42px rgba(0,0,0,.27)}
+.home-search input{flex:1;min-width:0;border:0;outline:0;padding:12px 14px;color:#152238}.home-search button{border:0;border-radius:9px;background:#2563eb;color:#fff;padding:12px 24px;font-weight:900}
+.home-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.home-chip{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.08);color:#fff;border-radius:999px;padding:7px 12px;font-size:12px;font-weight:750}.home-chip:hover{background:rgba(255,255,255,.15)}
+.home-why{background:linear-gradient(145deg,rgba(7,27,57,.92),rgba(14,59,103,.75));border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:26px;box-shadow:0 25px 60px rgba(0,0,0,.25);backdrop-filter:blur(12px)}
+.home-why h2{margin:0 0 18px;font-size:22px}.home-why-item{display:flex;gap:12px;margin:16px 0}.home-icon{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#3b82f6,#2563eb);display:grid;place-items:center;flex:none}.home-why-item strong{display:block;color:#fff}.home-why-item p{margin:2px 0 0;font-size:12px;color:#bdccde}
+.home-stats{position:relative;z-index:2;margin:-34px auto 0;width:min(1080px,90%);display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border:1px solid #dce5f0;border-radius:16px;box-shadow:0 16px 40px rgba(10,36,72,.14);overflow:hidden}.home-stat{text-align:center;padding:20px 12px;border-right:1px solid #e5ebf3;color:#64748b;font-size:12px}.home-stat:last-child{border-right:0}.home-stat strong{display:block;color:#123f7e;font-size:25px;line-height:1.1;margin-bottom:3px}
+.home-section{padding:76px 0}.home-section.alt{background:rgba(255,255,255,.74);backdrop-filter:blur(8px)}.home-head{text-align:center;margin-bottom:30px}.home-head .eyebrow{color:#2563eb}.home-head h2{font-size:35px;letter-spacing:-1px;margin:7px 0;color:#071a35}.home-head p{margin:0;color:#64748b}
+.home-free-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.home-feature{background:rgba(255,255,255,.95);border:1px solid #dce5f0;border-radius:17px;padding:22px;box-shadow:0 8px 26px rgba(11,34,68,.08);transition:.18s}.home-feature:hover{transform:translateY(-4px);box-shadow:0 20px 55px rgba(11,34,68,.12)}.home-feature .bigicon{font-size:28px}.home-feature h3{margin:9px 0 6px;color:#071a35}.home-feature p{margin:0;color:#64748b;font-size:13px}.free-label{display:inline-flex;align-items:center;padding:5px 8px;border-radius:999px;background:#ecfdf3;color:#15803d;font-size:10px;font-weight:900;letter-spacing:.6px;margin-top:12px}
+.home-pro{background:linear-gradient(135deg,#071a35,#0d3766);color:#fff}.home-pro .home-head h2{color:#fff}.home-pro .home-head p{color:#bdcce0}.home-pro .home-head .eyebrow{color:#7db3ff}.pro-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.pro-card{position:relative;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:17px;padding:22px;box-shadow:0 18px 45px rgba(0,0,0,.16);transition:.18s}.pro-card:hover{transform:translateY(-4px);background:rgba(255,255,255,.1)}.pro-card .bigicon{font-size:28px}.pro-card h3{margin:9px 0 6px;color:#fff}.pro-card p{margin:0;color:#c3d2e5;font-size:13px}.pro-label{position:absolute;right:16px;top:16px;padding:5px 8px;border-radius:999px;background:#dbeafe;color:#1d4ed8;font-size:10px;font-weight:950;letter-spacing:.7px}.pro-cta{margin-top:25px;text-align:center}.pro-cta .btn{background:#fff;color:#123f7e;box-shadow:none}.pro-note{margin-top:10px;font-size:11px;color:#9fb2ca}
+.home-bottom{padding:66px 0}.home-bottom-box{display:flex;align-items:center;justify-content:space-between;gap:28px;background:linear-gradient(135deg,#eef5ff,#fff);border:1px solid #d6e3f3;border-radius:22px;padding:30px;box-shadow:0 14px 40px rgba(11,34,68,.08)}.home-bottom-box h2{margin:0 0 7px;color:#071a35}.home-bottom-box p{margin:0;color:#64748b;max-width:650px}
+@media(max-width:900px){.home-hero-inner{grid-template-columns:1fr}.home-free-grid,.pro-grid{grid-template-columns:1fr 1fr}.home-stats{grid-template-columns:1fr 1fr}.home-stat:nth-child(2){border-right:0}.home-stat:nth-child(-n+2){border-bottom:1px solid #e5ebf3}}
+@media(max-width:650px){.home-hero-inner{padding:55px 0 70px}.home-copy h1{font-size:40px;letter-spacing:-1.5px}.home-search{flex-wrap:wrap}.home-search button{width:100%}.home-free-grid,.pro-grid{grid-template-columns:1fr}.home-stats{margin-top:-25px}.home-stat{border-right:0!important}.home-bottom-box{flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+<div id="site-nav"></div>
+
+<section class="home-hero">
+  <div class="container home-hero-inner">
+    <div class="home-copy">
+      <div class="eyebrow">✦ YOUR FUTURE, OUR GUIDANCE</div>
+      <h1>Find the Right College<br><span>for Your Future</span></h1>
+      <p>Explore colleges, compare courses, check fees and rankings, and build your personalized admission plan.</p>
+      <form class="home-search" onsubmit="goSearch(event)">
+        <input id="homeQ" aria-label="Search colleges" placeholder="Search colleges, courses or cities...">
+        <button type="submit">Search</button>
+      </form>
+      <div class="home-chips">
+        <button class="home-chip" onclick="quick('B.Tech')">B.Tech Colleges</button>
+        <button class="home-chip" onclick="quick('MBA')">MBA Colleges</button>
+        <button class="home-chip" onclick="quick('Medical')">Medical Colleges</button>
+        <button class="home-chip" onclick="quick('IIT')">IIT Colleges</button>
+      </div>
+    </div>
+    <div class="home-why">
+      <h2>Why Choose NIPATH?</h2>
+      <div class="home-why-item"><div class="home-icon">🎯</div><div><strong>Personalized Guidance</strong><p>Recommendations based on your goals and requirements.</p></div></div>
+      <div class="home-why-item"><div class="home-icon">📚</div><div><strong>Complete Information</strong><p>Courses, eligibility, fees, exams and rankings together.</p></div></div>
+      <div class="home-why-item"><div class="home-icon">⏰</div><div><strong>Stay Ahead</strong><p>Keep your college research and admission planning organized.</p></div></div>
+      <div class="home-why-item"><div class="home-icon">✓</div><div><strong>Student-first</strong><p>A simpler route through the chaos of college research.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="home-stats">
+  <div class="home-stat"><strong id="statInstitutions">900+</strong>Institution records</div>
+  <div class="home-stat"><strong>15</strong>NIRF categories</div>
+  <div class="home-stat"><strong id="statPrograms">2,600+</strong>Programme entries</div>
+  <div class="home-stat"><strong>4</strong>Planning stages</div>
+</div>
+
+<section class="home-section alt">
+  <div class="container">
+    <div class="home-head">
+      <div class="eyebrow">FREE TOOLS</div>
+      <h2>Everything you need to research colleges</h2>
+      <p>Core college information and discovery tools are available without a Pro subscription.</p>
+    </div>
+    <div class="home-free-grid">
+      <a class="home-feature" href="colleges.html"><div class="bigicon">🔎</div><h3>College Search</h3><p>Search institutions and programmes using the information in the NIPATH database.</p><span class="free-label">FREE</span></a>
+      <a class="home-feature" href="rankings.html"><div class="bigicon">🏆</div><h3>NIRF Rankings</h3><p>Browse NIRF categories and see institution rankings.</p><span class="free-label">FREE</span></a>
+      <a class="home-feature" href="exams.html"><div class="bigicon">🗓️</div><h3>Entrance Exams</h3><p>Explore major entrance exams and admission information.</p><span class="free-label">FREE</span></a>
+      <a class="home-feature" href="find.html"><div class="bigicon">🧭</div><h3>Find My College</h3><p>Answer real questions about your goals and get college matches.</p><span class="free-label">FREE</span></a>
+      <a class="home-feature" href="compare.html"><div class="bigicon">⚖️</div><h3>Compare Colleges</h3><p>Put colleges side by side and compare the information that matters.</p><span class="free-label">FREE</span></a>
+      <a class="home-feature" href="dashboard.html"><div class="bigicon">📋</div><h3>My Dashboard</h3><p>Keep your saved college research and planning activity together.</p><span class="free-label">FREE</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="home-section home-pro">
+  <div class="container">
+    <div class="home-head">
+      <div class="eyebrow">NIPATH PRO</div>
+      <h2>Turn college research into a complete plan</h2>
+      <p>These advanced planning tools are intentionally separated from the free college-information tools.</p>
+    </div>
+    <div class="pro-grid">
+      <a class="pro-card" href="shortlist.html"><span class="pro-label">PRO</span><div class="bigicon">⭐</div><h3>Smart Shortlist</h3><p>Organize your choices into Dream, Target and Safe colleges.</p></a>
+      <a class="pro-card" href="roadmap.html"><span class="pro-label">PRO</span><div class="bigicon">🧭</div><h3>Admission Roadmap</h3><p>Build a structured path from Class 12 planning to college admission.</p></a>
+      <a class="pro-card" href="scholarships.html"><span class="pro-label">PRO</span><div class="bigicon">🎓</div><h3>Scholarship Planning</h3><p>Organize scholarship opportunities and track what you need to verify.</p></a>
+      <a class="pro-card" href="dashboard.html"><span class="pro-label">PRO</span><div class="bigicon">⏰</div><h3>Deadline Tracker</h3><p>Keep important application deadlines and tasks in one place.</p></a>
+      <a class="pro-card" href="compare.html"><span class="pro-label">PRO</span><div class="bigicon">📊</div><h3>Advanced Comparison</h3><p>Use your shortlist to make more informed college decisions.</p></a>
+      <a class="pro-card" href="payment.html"><span class="pro-label">PRO</span><div class="bigicon">✨</div><h3>Pro Workspace</h3><p>Unlock the full planning experience and keep your admission journey together.</p></a>
+    </div>
+    <div class="pro-cta"><a class="btn" href="payment.html">Get NIPATH Pro</a><div class="pro-note">Demo checkout only. Replace with a verified payment provider before accepting real payments.</div></div>
+  </div>
+</section>
+
+<section class="home-bottom">
+  <div class="container home-bottom-box">
+    <div><h2>Start with the information. Build the plan when you're ready.</h2><p>Use the free tools to explore colleges first. Pro features are clearly separated for students who want deeper admission planning.</p></div>
+    <a class="btn" href="find.html">Find My College</a>
+  </div>
+</section>
+
+<div id="site-footer"></div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+function goSearch(e){e.preventDefault();const q=document.getElementById('homeQ').value.trim();location.href='colleges.html'+(q?'?q='+encodeURIComponent(q):'')}
+function quick(q){location.href='colleges.html?q='+encodeURIComponent(q)}
+document.addEventListener('DOMContentLoaded',()=>{if(typeof FREE_DATASET_STATS!=='undefined'){document.getElementById('statInstitutions').textContent=FREE_DATASET_STATS.institutionRecords.toLocaleString('en-IN')+'+';document.getElementById('statPrograms').textContent=FREE_DATASET_STATS.programRows.toLocaleString('en-IN')+'+';}})
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>College Search | UniPath</title><link rel="stylesheet" href="style.css"><link rel="icon" href="favicon.svg"></head><body><div id="site-nav"></div>
+<main class="page"><div class="container">
+<div class="page-title"><div class="eyebrow">DISCOVER</div><h1>College Search</h1><p>Search the complete UniPath free-tier dataset by institution, course, eligibility, entrance route, category or fee text.</p></div>
+<section class="panel"><div class="filters">
+<input id="q" class="field" placeholder="College, course, eligibility or exam">
+<select id="category" class="field"><option value="">All categories</option></select>
+<select id="program" class="field"><option value="">All programme types</option></select>
+<input id="fee" class="field" placeholder="Fee text, e.g. ₹5 lakh">
+<button class="btn" onclick="apply()">Apply Filters</button>
+</div></section>
+<div class="results-head"><h2>Institutions</h2><span id="count" class="muted"></span></div>
+<div id="results" class="card-list"></div>
+</div></main><div id="site-footer"></div><script src="data.js"></script><script src="app.js"></script>
+<script>
+const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const cats=[...new Set(COLLEGES.map(c=>c.category))].sort();
+cats.forEach(x=>document.getElementById('category').insertAdjacentHTML('beforeend',`<option>${esc(x)}</option>`));
+const progs=[...new Set(COLLEGES.flatMap(c=>c.programs.map(p=>p.programme)).filter(Boolean))].sort();
+progs.forEach(x=>document.getElementById('program').insertAdjacentHTML('beforeend',`<option>${esc(x)}</option>`));
+function render(list){
+ document.getElementById('count').textContent=`${list.length.toLocaleString('en-IN')} institution records`;
+ document.getElementById('results').innerHTML=list.length?list.map(c=>`<article class="college-card"><div>
+ <div class="rank">${esc(c.category)}</div><h2>${esc(c.name)}</h2>
+ <div class="meta">${c.programs.length} programme entries · ${esc(c.programs.map(p=>p.programme).filter(Boolean).slice(0,4).join(' · '))}</div>
+ <div class="meta">${esc(c.programs[0]?.entrance||'Admission route listed in profile')}</div>
+ <div><span class="tag">${esc(c.category)}</span><span class="tag">${c.hostel?'Residential option listed':'Mode varies'}</span></div>
+ </div><div class="card-actions"><a class="btn small" href="college.html?id=${encodeURIComponent(c.id)}">View Details</a><button class="btn small outline" onclick="compare('${c.id}')">Compare</button></div></article>`).join(''):`<div class="empty"><h2>No records found</h2><p>Try a broader search. The spreadsheet contains ${FREE_DATASET_STATS.institutionRecords} institution records.</p></div>`;
+}
+function apply(){
+ const q=document.getElementById('q').value.toLowerCase().trim(),cat=document.getElementById('category').value,pr=document.getElementById('program').value,fee=document.getElementById('fee').value.toLowerCase().trim();
+ render(COLLEGES.filter(c=>{
+  const text=[c.name,c.category,...c.programs.flatMap(p=>Object.values(p))].join(' ').toLowerCase();
+  return (!q||text.includes(q))&&(!cat||c.category===cat)&&(!pr||c.programs.some(p=>p.programme===pr))&&(!fee||c.programs.some(p=>p.fees.toLowerCase().includes(fee)));
+ }));
+}
+function compare(id){let a=JSON.parse(localStorage.getItem('unipathCompare')||'[]');if(!a.includes(id))a.push(id);if(a.length>2)a=a.slice(-2);localStorage.setItem('unipathCompare',JSON.stringify(a));alert('Added to comparison. Open Compare from the navigation.')}
+const qp=new URLSearchParams(location.search).get('q');document.getElementById('q').value=qp||'';apply();document.getElementById('q').addEventListener('keydown',e=>e.key==='Enter'&&apply());
+</script></body></html>

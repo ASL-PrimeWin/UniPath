@@ -1,0 +1,54 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Find My College | UniPath</title><link rel="stylesheet" href="style.css"><link rel="icon" href="favicon.svg"></head><body><div id="site-nav"></div>
+<main class="page"><div class="container"><div class="page-title"><div class="eyebrow">PERSONALIZED MATCHING</div><h1>Find My College</h1><p>Tell UniPath what you actually want. We score the full free-tier dataset against your requirements instead of making you guess which filters matter.</p></div>
+<div class="quiz-shell"><section class="quiz panel"><div class="quiz-top"><span id="step" class="quiz-step"></span><span id="status" class="muted"></span></div><div class="progress"><div id="bar"></div></div><div id="qbox"></div></section><div id="results" style="display:none;margin-top:18px"></div></div></div></main><div id="site-footer"></div><script src="data.js"></script><script src="app.js"></script>
+<script>
+const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const questions=[
+ {key:'field',title:'What do you want to study?',help:'Pick the broadest area that matches your current goal.',options:[['Engineering & Technology','engineering'],['Computer & Data','computer'],['Medicine & Health','medical'],['Science & Research','science'],['Business & Management','business'],['Law','law'],['Architecture & Design','design'],['Agriculture','agriculture'],['Arts, Commerce & Humanities','arts'],['Skill & Vocational','skill'],['Not sure yet','any']]},
+ {key:'program',title:'Which programme are you looking for?',help:'We will match against the actual programme names in the dataset.',options:[['B.Tech / B.E.','tech'],['B.Sc / B.S.','science'],['MBBS / BDS / Health','health'],['BBA / BMS / Management','management'],['Law / Integrated Law','law'],['B.Arch / Design','design'],['B.A. / B.Com.','arts'],['Agriculture / Allied','agri'],['Any programme','any']]},
+ {key:'exam',title:'Which entrance route are you planning to use?',help:'Choose the route you expect to apply through. We match keywords in the admission information.',options:[['JEE Main / Advanced','jee'],['NEET UG','neet'],['CUET','cuet'],['CLAT','clat'],['NATA','nata'],['CAT','cat'],['No specific exam / Not sure','any']]},
+ {key:'mode',title:'How do you want to study?',help:'This uses the mode information available in your free-tier data.',options:[['Residential / On-campus','residential'],['Day scholar','day'],['Online / ODL','online'],['I am flexible','any']]},
+ {key:'duration',title:'What course length do you prefer?',help:'Some programmes are 3 years, others 4, 5 or more.',options:[['About 3 years','3'],['About 4 years','4'],['5 years or longer','5'],['No preference','any']]},
+ {key:'cost',title:'How important is keeping fees lower?',help:'Fee text is matched approximately where the spreadsheet provides a numeric range.',options:[['Very important','low'],['Somewhat important','mid'],['Fees are not my main concern','high'],['Flexible / not sure','any']]},
+ {key:'priority',title:'What should matter most in your shortlist?',help:'This controls the weighting of your final recommendations.',options:[['Strong course match','course'],['Entrance route match','exam'],['Affordable options','cost'],['Study-mode match','mode'],['Balanced overall match','balanced']]}
+];
+let step=0,answers={};
+function draw(){
+ const q=questions[step];
+ document.getElementById('step').textContent=`Question ${step+1} of ${questions.length}`;
+ document.getElementById('status').textContent=step===0?'Start with your study goal.':`${Object.keys(answers).length} preference${Object.keys(answers).length===1?'':'s'} saved`;
+ document.getElementById('bar').style.width=((step)/questions.length*100)+'%';
+ document.getElementById('qbox').innerHTML=`<h2 class="quiz-question">${esc(q.title)}</h2><p class="quiz-help">${esc(q.help)}</p><div class="option-grid ${q.options.length>6?'three':''}">${q.options.map(o=>`<button class="option ${answers[q.key]===o[1]?'selected':''}" onclick="choose('${q.key}','${o[1]}')"><strong>${esc(o[0])}</strong></button>`).join('')}</div><div class="quiz-nav"><button class="btn outline" onclick="back()" ${step===0?'disabled':''}>← Back</button><div class="right"><button class="btn" onclick="next()" ${answers[q.key]?'':'disabled'}>${step===questions.length-1?'Find My Matches':'Next →'}</button></div></div>`;
+}
+function choose(k,v){answers[k]=v;draw()}
+function back(){if(step>0){step--;draw()}}
+function norm(s){return String(s||'').toLowerCase()}
+function allText(c){return norm([c.name,c.category,...c.programs.flatMap(p=>Object.values(p))].join(' '))}
+function scoreCollege(c){
+ const text=allText(c), progs=c.programs||[]; let score=0,max=0,reasons=[];
+ const add=(points,ok,reason)=>{max+=points;if(ok){score+=points;reasons.push(reason)}};
+ const f=answers.field;
+ const fieldMap={engineering:['engineering','technology','technical'],computer:['computer','data science','software','information technology','cse','electronic'],medical:['medical','medicine','mbbs','bds','nursing','allied health','pharmacy','physiotherapy'],science:['science','research','physics','chemistry','biology','mathematics'],business:['management','business','bba','bms','commerce','finance'],law:['law','ll.b','llb'],design:['architecture','design','b.arch','planning'],agriculture:['agriculture','forestry','horticulture','veterinary','animal'],arts:['arts','humanities','history','journalism','commerce','liberal arts'],skill:['skill','vocational','b.voc','diploma']};
+ if(f==='any') add(14,true,'Broad field flexible'); else add(22,(fieldMap[f]||[]).some(k=>text.includes(k)), 'Study area matches');
+ const p=answers.program; const pMap={tech:['b.tech','b.e.','b.e/b.tech','engineering'],science:['b.sc','b.s.','bs','b.sc. (hons.)'],health:['mbbs','bds','nursing','b.pharm','pharmd','bpt','allied health','paramedical'],management:['bba','bms','management','b.com'],law:['law','ll.b','llb'],design:['b.arch','b.des','design'],arts:['b.a.','ba ','b.com','b.com.'],agri:['agriculture','b.sc agriculture','b.v.sc','forestry'],any:[]};
+ if(p==='any') add(18,true,'Programme flexible'); else add(24,(pMap[p]||[]).some(k=>text.includes(k)), 'Programme match');
+ const e=answers.exam; const eMap={jee:['jee'],neet:['neet'],cuet:['cuet'],clat:['clat'],nata:['nata'],cat:['cat']};
+ if(e==='any') add(14,true,'Entrance route flexible'); else add(22,(eMap[e]||[]).some(k=>text.includes(k)), 'Entrance route listed');
+ const m=answers.mode; let modeOk=false; if(m==='any') modeOk=true; else if(m==='residential') modeOk=progs.some(p=>/residential|on-campus/i.test(p.mode||''))||c.hostel; else if(m==='day') modeOk=progs.some(p=>/day scholar|day/i.test(p.mode||'')); else if(m==='online') modeOk=progs.some(p=>/online|odl|distance|hybrid/i.test(p.mode||'')); add(12,modeOk,'Study mode available');
+ const d=answers.duration; let durOk=false; if(d==='any')durOk=true; else durOk=progs.some(p=>String(p.duration||'').includes(d)); add(8,durOk,'Preferred duration found');
+ const nums=progs.flatMap(p=>{let s=String(p.fees||'');let a=[...s.matchAll(/(?:₹\s*)?(\d+(?:\.\d+)?)\s*(lakh|lac|L)?/gi)].map(m=>{let n=parseFloat(m[1]);return /lakh|lac/i.test(m[2]||'')?n*100000:n*100000});return a}).filter(n=>n>0&&n<5000000); let costOk=true; if(answers.cost==='low')costOk=nums.length?Math.min(...nums)<=500000:true; if(answers.cost==='mid')costOk=nums.length?Math.min(...nums)<=1500000:true; if(answers.cost==='high')costOk=true; add(8,costOk,answers.cost==='low'?'Lower fee signal found':'Fee preference compatible');
+ if(answers.priority==='course'){score*=1.12}else if(answers.priority==='exam'){score*=1.10}else if(answers.priority==='cost'){score*=1.08}else if(answers.priority==='mode'){score*=1.08}
+ return {c,score,max:max*1.12,reasons:[...new Set(reasons)]};
+}
+function finish(){
+ const ranked=COLLEGES.map(scoreCollege).sort((a,b)=>b.score-a.score).slice(0,12); const best=ranked[0]?.score||0;
+ localStorage.setItem('unipathMatches',JSON.stringify(ranked.map(x=>x.c.id)));
+ document.getElementById('bar').style.width='100%'; document.querySelector('.quiz').style.display='none';
+ document.getElementById('results').style.display='block';
+ document.getElementById('results').innerHTML=`<section class="panel"><div class="eyebrow">YOUR PERSONALIZED SHORTLIST</div><h2>${ranked.length} strongest matches from ${COLLEGES.length.toLocaleString('en-IN')} institutions</h2><p class="muted">These are ranked matches, not guaranteed admissions. Open each profile to inspect the exact programme and eligibility information from the dataset.</p><div class="result-toolbar"><strong>Best match: ${Math.round((best/(ranked[0]?.max||1))*100)}%</strong><div><button class="btn outline small" onclick="restart()">Retake Quiz</button> <a class="btn small" href="colleges.html">Browse All Colleges</a></div></div><div class="match-grid">${ranked.map(x=>{let pct=Math.max(1,Math.min(99,Math.round(x.score/x.max*100)));return `<article class="match-card"><div class="match-score">${pct}% match</div><h3>${esc(x.c.name)}</h3><div class="match-meta">${esc(x.c.category)} · ${x.c.programs.length} programme entries</div><div class="match-reasons">${x.reasons.slice(0,4).map(r=>`<span class="match-reason">✓ ${esc(r)}</span>`).join('')}</div><div class="match-meta">${esc(x.c.programs.slice(0,2).map(p=>p.programme).filter(Boolean).join(' · '))}</div><div style="margin-top:14px"><a class="btn small" href="college.html?id=${encodeURIComponent(x.c.id)}">View Details</a> <button class="btn small outline" onclick="saveMatch('${x.c.id}','target')">Save</button></div></article>`}).join('')}</div></section>`;
+}
+function next(){if(!answers[questions[step].key])return;if(step<questions.length-1){step++;draw()}else finish()}
+function saveMatch(id,tier){let a=JSON.parse(localStorage.getItem('unipathMatches')||'[]');if(!a.includes(id))a.push(id);localStorage.setItem('unipathMatches',JSON.stringify(a));let t=JSON.parse(localStorage.getItem('unipathTiers')||'{}');t[id]=tier;localStorage.setItem('unipathTiers',JSON.stringify(t));alert('Saved to your shortlist.')}
+function restart(){step=0;answers={};document.getElementById('results').style.display='none';document.querySelector('.quiz').style.display='block';draw()}
+draw();
+</script></body></html>

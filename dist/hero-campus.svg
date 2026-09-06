@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 560">
+<defs>
+ <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#eaf6ff"/><stop offset="1" stop-color="#9fd1f3"/></linearGradient>
+ <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fdfefe"/><stop offset="1" stop-color="#d8e8f5"/></linearGradient>
+ <linearGradient id="grass" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#75b98b"/><stop offset="1" stop-color="#2f7b58"/></linearGradient>
+ <filter id="shadow"><feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#0a2e5b" flood-opacity=".22"/></filter>
+</defs>
+<rect width="900" height="560" rx="28" fill="url(#sky)"/>
+<circle cx="735" cy="105" r="58" fill="#fff" opacity=".55"/>
+<path d="M0 390 Q180 325 355 385 T900 355 V560 H0Z" fill="url(#grass)"/>
+<path d="M0 475 Q210 395 450 470 T900 430 V560 H0Z" fill="#28694d" opacity=".55"/>
+<g filter="url(#shadow)">
+ <rect x="185" y="175" width="530" height="230" rx="8" fill="url(#glass)"/>
+ <path d="M145 182 L450 70 L755 182 Z" fill="#315d85"/>
+ <path d="M185 176 L450 90 L715 176" fill="#6d94b5" opacity=".7"/>
+ <rect x="250" y="205" width="400" height="24" rx="4" fill="#1e4b72"/>
+ <g fill="#7aa9ca">
+  <rect x="235" y="250" width="62" height="118" rx="3"/><rect x="318" y="250" width="62" height="118" rx="3"/><rect x="401" y="250" width="62" height="118" rx="3"/><rect x="484" y="250" width="62" height="118" rx="3"/><rect x="567" y="250" width="62" height="118" rx="3"/>
+ </g>
+ <g fill="#f7fbff">
+  <rect x="246" y="260" width="40" height="34"/><rect x="329" y="260" width="40" height="34"/><rect x="412" y="260" width="40" height="34"/><rect x="495" y="260" width="40" height="34"/><rect x="578" y="260" width="40" height="34"/>
+  <rect x="246" y="310" width="40" height="34"/><rect x="329" y="310" width="40" height="34"/><rect x="412" y="310" width="40" height="34"/><rect x="495" y="310" width="40" height="34"/><rect x="578" y="310" width="40" height="34"/>
+ </g>
+ <path d="M410 368 H490 V405 H410Z" fill="#315d85"/><path d="M395 368 H505 V382 H395Z" fill="#274b70"/>
+</g>
+<g fill="#fff" stroke="#d6e5f1">
+ <rect x="55" y="55" width="170" height="62" rx="15"/><rect x="670" y="245" width="175" height="62" rx="15"/><rect x="54" y="255" width="190" height="62" rx="15"/>
+</g>
+<g font-family="Arial, sans-serif" fill="#173c68"><text x="78" y="82" font-size="13" font-weight="700">ADMISSION DATES</text><text x="78" y="103" font-size="11">Stay ahead of deadlines</text><text x="695" y="272" font-size="13" font-weight="700">ENTRANCE EXAMS</text><text x="695" y="293" font-size="11">JEE · NEET · CUET · CLAT</text><text x="78" y="282" font-size="13" font-weight="700">COURSES AVAILABLE</text><text x="78" y="303" font-size="11">Explore programmes that fit you</text></g>
+</svg>

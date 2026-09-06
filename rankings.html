@@ -1,0 +1,12 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NIRF & UniPath Categories | UniPath</title><link rel="stylesheet" href="style.css"><link rel="icon" href="favicon.svg"></head><body><div id="site-nav"></div>
+<main class="page"><div class="container"><div class="page-title"><div class="eyebrow">RANKINGS & DATA</div><h1>NIRF Categories</h1><p>Browse NIRF-linked categories. Institutions without a verified rank in the local dataset are not shown in ranked lists.</p></div><div class="category-tabs" id="tabs"></div><div class="table-wrap"><table><thead><tr><th>Rank</th><th>Institution</th><th>Category</th><th>Example entrance</th></tr></thead><tbody id="body"></tbody></table></div><br><div class="notice">Only verified rank fields stored in the local dataset are shown. Rank bands and current NIRF data should be checked against the official NIRF publication before an application decision.</div></div></main><div id="site-footer"></div><script src="data.js"></script><script src="app.js"></script>
+<script>
+const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const available=[...new Set(COLLEGES.filter(c=>c.rank!=null).map(c=>c.category))];
+let selected=available.includes('Engineering')?'Engineering':available[0];
+const tabs=document.getElementById('tabs');
+NIRF_CATEGORIES.forEach(x=>{let b=document.createElement('button');b.textContent=x;b.disabled=!available.includes(x);b.onclick=()=>{selected=x;renderTabs();render()};tabs.appendChild(b)});
+function renderTabs(){[...tabs.querySelectorAll('button')].forEach(b=>{b.classList.toggle('active',b.textContent===selected);b.style.opacity=available.includes(b.textContent)?'1':'.4'})}
+function render(){let list=COLLEGES.filter(c=>c.category===selected && c.rank!=null).sort((a,b)=>String(a.rank).localeCompare(String(b.rank),undefined,{numeric:true}));document.getElementById('body').innerHTML=list.length?list.map(c=>`<tr><td><strong>#${esc(c.rank)}</strong></td><td><a href="college.html?id=${encodeURIComponent(c.id)}"><strong>${esc(c.name)}</strong></a></td><td>${esc(c.category)}</td><td>${esc(c.programs[0]?.entrance||'—')}</td></tr>`).join(''):`<tr><td colspan="4">No verified ranked institutions are available in this local dataset for this category.</td></tr>`}
+renderTabs();render();
+</script></body></html>
