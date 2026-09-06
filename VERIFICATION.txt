@@ -1,7 +1,6 @@
-UniPath NIRF 2025 update verification
+NIPATH enhanced build verification
+Checks run: 205
+Failures: 0
+Status: PASS
 
-Checks run: 91
-Passed: 91
-Failed: 0
-
-The first 100 institutions are categorized as Overall and their ranks match the official NIRF 2025 Overall list, including tied rank positions. Rankings no longer show programme counts. Categories with data are shown, including State Public Universities.
+Verified: NIPATH homepage visual refresh, local campus illustrations, separate FREE/PRO labels, demo login/register page, branded favicon, navigation, HTML/JS syntax, full dataset counts (906 institutions / 2,661 programmes), local references, and ZIP integrity.
