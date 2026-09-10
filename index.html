@@ -8,130 +8,113 @@
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="favicon.png">
 </head>
-<body class="home-reference">
+<body class="home-reference home-exact">
   <div id="site-nav"></div>
-
   <main>
-    <section class="ref-hero">
-      <div class="ref-hero-bg"></div>
-      <div class="ref-hero-inner container">
-        <div class="ref-hero-copy">
-          <div class="ref-kicker">WORLD'S LARGEST COLLEGE INFORMATION PLATFORM</div>
+    <section class="u-home-hero">
+      <div class="u-hero-bg-map"></div>
+      <div class="u-hero-inner container">
+        <div class="u-hero-copy">
+          <div class="u-kicker">WORLD'S LARGEST COLLEGE INFORMATION PLATFORM</div>
           <h1>Find Your<br><span>Right College.</span></h1>
           <p>Search, compare and discover colleges, courses, fees, admission dates, entrance exams and more — all in one place.</p>
-          <form class="ref-search" onsubmit="return submitHomeSearch(event)">
-            <span class="ref-search-icon">⌕</span>
+          <form class="u-search" onsubmit="return homeSearch(event)">
+            <span aria-hidden="true">⌕</span>
             <input id="homeSearch" autocomplete="off" placeholder="Search colleges, courses, exams..." aria-label="Search colleges, courses and exams">
             <button type="submit">Search</button>
           </form>
-          <div class="ref-filter-row" aria-label="Quick search filters">
-            <label><span>◎</span><select id="homeCountry"><option>Country</option><option>India</option></select></label>
-            <label><span>⌖</span><select id="homeState"><option>State</option><option>Any State</option></select></label>
-            <label><span>⌂</span><select id="homeCity"><option>City</option><option>Any City</option></select></label>
-            <label><span>◆</span><select id="homeCourse"><option value="">Course</option></select></label>
-            <label><span>▣</span><select id="homeDegree"><option value="">Degree</option></select></label>
+          <div class="u-filters" aria-label="Quick filters">
+            <select id="homeCategory" aria-label="Category"><option value="">Category</option></select>
+            <select id="homeProgram" aria-label="Programme"><option value="">Course</option></select>
+            <select id="homeExam" aria-label="Entrance exam"><option value="">Entrance Exam</option></select>
+            <select id="homeMode" aria-label="Study mode"><option value="">Study Mode</option><option>Residential</option><option>On-campus</option><option>Online</option><option>Distance</option></select>
+            <a href="colleges.html" class="u-filter-clear">All filters →</a>
           </div>
         </div>
-
-        <div class="ref-hero-art" aria-label="University campus preview">
-          <div class="ref-campus-photo">
-            <img src="home-campus.jpg" alt="University campus">
-          </div>
-          <a class="ref-float f1" href="exams.html"><b>▣</b><span>Admission<br>Dates</span></a>
-          <a class="ref-float f2" href="exams.html"><b>□</b><span>Entrance<br>Exams</span></a>
-          <a class="ref-float f3" href="colleges.html"><b>▤</b><span>Courses<br>Available</span></a>
-          <a class="ref-float f4" href="compare.html"><b>◉</b><span>Sports &<br>Facilities</span></a>
-          <a class="ref-float f5" href="colleges.html"><b>₹</b><span>Fees &<br>Hostel Fees</span></a>
-          <a class="ref-float f6" href="exams.html"><b>▧</b><span>Exam<br>Papers</span></a>
+        <div class="u-hero-campus">
+          <img src="hero-campus-reference.jpg" alt="University campus with UniPath feature callouts">
+          <a class="u-hotspot h1" href="exams.html" aria-label="Admission dates"></a>
+          <a class="u-hotspot h2" href="exams.html" aria-label="Entrance exams"></a>
+          <a class="u-hotspot h3" href="colleges.html" aria-label="Courses available"></a>
+          <a class="u-hotspot h4" href="colleges.html" aria-label="Sports and facilities"></a>
+          <a class="u-hotspot h5" href="colleges.html" aria-label="Fees and hostel fees"></a>
+          <a class="u-hotspot h6" href="exams.html" aria-label="Exam papers"></a>
         </div>
       </div>
     </section>
 
-    <section class="ref-stat-wrap container" aria-label="UniPath database summary">
-      <div class="ref-stat-bar">
+    <section class="u-stat-wrap container" aria-label="UniPath database summary">
+      <div class="u-stat-bar">
         <div><strong>906+</strong><span>Institutions</span></div>
         <div><strong>2,661+</strong><span>Programme entries</span></div>
-        <div><strong>15</strong><span>NIRF categories</span></div>
+        <div><strong>16</strong><span>NIRF categories</span></div>
         <div><strong>6</strong><span>Core tools</span></div>
         <div><strong>Full</strong><span>Database search</span></div>
       </div>
     </section>
 
-    <section class="ref-feature-row container">
-      <a class="ref-feature-card" href="colleges.html"><div class="ref-feature-icon">⌂</div><h3>Find Colleges</h3><p>Explore colleges<br>from the full database</p><span>→</span></a>
-      <a class="ref-feature-card" href="colleges.html"><div class="ref-feature-icon">◇</div><h3>Find Courses</h3><p>Explore courses<br>and programmes</p><span>→</span></a>
-      <a class="ref-feature-card" href="exams.html"><div class="ref-feature-icon">▣</div><h3>Admission Dates</h3><p>Check important<br>admission dates</p><span>→</span></a>
-      <a class="ref-feature-card" href="exams.html"><div class="ref-feature-icon">▤</div><h3>Entrance Exams</h3><p>Find exams, dates<br>and details</p><span>→</span></a>
-      <a class="ref-feature-card" href="colleges.html"><div class="ref-feature-icon">₹</div><h3>Fees & Hostel</h3><p>View fee structure<br>and hostel info</p><span>→</span></a>
-      <a class="ref-feature-card" href="exams.html"><div class="ref-feature-icon">▧</div><h3>Exam Papers</h3><p>Previous year papers<br>and resources</p><span>→</span></a>
+    <section class="u-tool-row container">
+      <a class="u-tool" href="colleges.html"><div class="u-tool-icon">⌂</div><h3>Find Colleges</h3><p>Explore colleges<br>from the full database</p><span>→</span></a>
+      <a class="u-tool" href="colleges.html"><div class="u-tool-icon">◇</div><h3>Find Courses</h3><p>Explore courses<br>and programmes</p><span>→</span></a>
+      <a class="u-tool" href="exams.html"><div class="u-tool-icon">▣</div><h3>Admission Dates</h3><p>Check important<br>admission dates</p><span>→</span></a>
+      <a class="u-tool" href="exams.html"><div class="u-tool-icon">▤</div><h3>Entrance Exams</h3><p>Find exams, dates<br>and details</p><span>→</span></a>
+      <a class="u-tool" href="colleges.html"><div class="u-tool-icon">₹</div><h3>Fees & Hostel</h3><p>View fee structure<br>and hostel info</p><span>→</span></a>
+      <a class="u-tool" href="exams.html"><div class="u-tool-icon">▧</div><h3>Exam Papers</h3><p>Previous year papers<br>and resources</p><span>→</span></a>
     </section>
 
-    <section class="ref-about">
-      <div class="container ref-about-inner">
-        <div>
-          <div class="ref-section-label">WHY CHOOSE UNIPATH?</div>
+    <section class="u-why">
+      <div class="container u-why-grid">
+        <div class="u-why-copy">
+          <div class="u-label">WHY CHOOSE UNIPATH?</div>
           <h2>Everything you need for your college journey.</h2>
-          <p class="ref-about-lead">From exploring colleges to planning admission, UniPath brings the important information and tools together in one place.</p>
+          <p>From exploring colleges to planning admission, UniPath brings the important information and tools together in one place.</p>
+          <a href="find.html" class="u-primary">Find My College →</a>
         </div>
-        <div class="ref-mini-grid">
-          <div class="ref-mini"><b>✓</b><h3>Accurate & updated data</h3><p>College and programme information from the UniPath team dataset.</p></div>
-          <div class="ref-mini"><b>⚡</b><h3>Save time</h3><p>Search and compare without jumping between endless tabs.</p></div>
-          <div class="ref-mini"><b>◉</b><h3>Personalized guidance</h3><p>Find My College ranks matches from your requirements.</p></div>
-          <div class="ref-mini"><b>★</b><h3>Made for Class 12</h3><p>Built around the decisions students and parents actually make.</p></div>
-        </div>
+        <div class="u-why-image"><img src="campus-visual.jpg" alt="Students and campus"></div>
+      </div>
+      <div class="container u-why-points">
+        <div><b>✓</b><strong>Accurate & updated data</strong><span>College and programme information from the team dataset.</span></div>
+        <div><b>⚡</b><strong>Save time</strong><span>Search and compare without endless tabs.</span></div>
+        <div><b>◉</b><strong>Personalized guidance</strong><span>Find My College scores matches from your requirements.</span></div>
+        <div><b>★</b><strong>Made for Class 12</strong><span>Focused on real student decisions.</span></div>
       </div>
     </section>
 
-    <section class="ref-tools">
+    <section class="u-tools-section">
       <div class="container">
-        <div class="ref-tools-head">
-          <div>
-            <div class="ref-section-label">EXPLORE OUR TOOLS</div>
-            <h2>Everything you need</h2>
-            <p>Start with the free tools, then switch to UniPath Pro when you need deeper planning.</p>
-          </div>
-          <div class="ref-tier-switch" role="tablist" aria-label="Choose tools tier">
-            <button id="freeToggle" class="active" onclick="showHomeTier('free')">FREE</button>
-            <button id="proToggle" onclick="showHomeTier('pro')">UNIPATH PRO</button>
-          </div>
+        <div class="u-section-head">
+          <div><div class="u-label">EXPLORE OUR TOOLS</div><h2>Everything you need</h2><p>Start with free tools, then switch to UniPath Pro for deeper planning.</p></div>
+          <div class="u-tier-switch" role="tablist"><button id="freeToggle" class="active" onclick="showHomeTier('free')">FREE</button><button id="proToggle" onclick="showHomeTier('pro')">UNIPATH PRO</button></div>
         </div>
-
-        <div id="freeToolsPanel" class="ref-tier-panel">
-          <div class="ref-tool-card"><span class="pill free">FREE TOOLS</span><h3>Get started, for free.</h3><p>Essential tools to explore and plan your college journey.</p><div class="ref-check-grid"><span>✓ College Search</span><span>✓ College Compare</span><span>✓ NIRF Rankings</span><span>✓ Important Dates</span><span>✓ Entrance Exam Calendar</span><span>✓ College Details</span></div><a class="ref-blue-btn" href="colleges.html">Explore Free Tools →</a></div>
-          <div class="ref-tool-card ref-tool-image"><img src="college-discovery.jpg" alt="College discovery preview"></div>
+        <div id="freeToolsPanel" class="u-tier-panel">
+          <div class="u-tier-card"><span class="u-pill free">FREE TOOLS</span><h3>Get started, for free.</h3><p>Essential tools to explore and plan your college journey.</p><div class="u-checks"><span>✓ College Search</span><span>✓ College Compare</span><span>✓ NIRF Rankings</span><span>✓ Important Dates</span><span>✓ Entrance Exam Calendar</span><span>✓ College Details</span></div><a class="u-primary" href="colleges.html">Explore Free Tools →</a></div>
+          <div class="u-tier-image"><img src="college-discovery.jpg" alt="College discovery"></div>
         </div>
-
-        <div id="proToolsPanel" class="ref-tier-panel" hidden>
-          <div class="ref-tool-card ref-pro"><span class="pill pro">UNIPATH PRO</span><h3>Go further with Pro.</h3><p>Unlock personalized planning features for the next stage of your admission journey.</p><div class="ref-check-grid"><span>✓ Personalized College Shortlist</span><span>✓ Application Deadline Tracker</span><span>✓ Scholarship Matching</span><span>✓ Application Planning</span><span>✓ Personalized Admission Roadmap</span></div><a class="ref-gold-btn" href="payment.html">Upgrade to Pro →</a></div>
-          <div class="ref-tool-card ref-tool-image"><img src="pro-visual-clean.jpg" alt="UniPath Pro planning preview"></div>
+        <div id="proToolsPanel" class="u-tier-panel" hidden>
+          <div class="u-tier-card u-pro-card"><span class="u-pill pro">UNIPATH PRO</span><h3>Go further with Pro.</h3><p>Unlock personalized planning features for your admission journey.</p><div class="u-checks"><span>✓ Personalized College Shortlist</span><span>✓ Application Deadline Tracker</span><span>✓ Scholarship Matching</span><span>✓ Application Planning</span><span>✓ Personalized Admission Roadmap</span></div><a class="u-gold" href="payment.html">Upgrade to Pro →</a></div>
+          <div class="u-tier-image"><img src="pro-visual-clean.jpg" alt="UniPath Pro planning"></div>
         </div>
       </div>
     </section>
 
-    <section class="ref-cta">
-      <div class="container ref-cta-inner">
-        <div><div class="ref-section-label">YOUR NEXT STEP</div><h2>Find your right college.</h2><p>Use the complete UniPath database and start building your shortlist.</p></div>
-        <a class="ref-blue-btn" href="find.html">Find My College →</a>
-      </div>
+    <section class="u-bottom-cta">
+      <div class="container u-cta-inner"><div><div class="u-label">YOUR NEXT STEP</div><h2>Find your right college.</h2><p>Search the complete UniPath database and build your shortlist.</p></div><a class="u-primary" href="find.html">Find My College →</a></div>
     </section>
   </main>
-
   <div id="site-footer"></div>
-  <script src="data.js"></script>
-  <script src="app.js"></script>
+  <script src="data.js"></script><script src="app.js"></script>
   <script>
     function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
-    function submitHomeSearch(e){e.preventDefault();const q=document.getElementById('homeSearch').value.trim();location.href='colleges.html'+(q?'?q='+encodeURIComponent(q):'');return false}
-    function showHomeTier(t){document.getElementById('freeToolsPanel').hidden=t!=='free';document.getElementById('proToolsPanel').hidden=t!=='pro';document.getElementById('freeToggle').classList.toggle('active',t==='free');document.getElementById('proToggle').classList.toggle('active',t==='pro')}
-    function populateHomeFilters(){
-      const courses=[...new Set(COLLEGES.flatMap(c=>(c.programs||[]).map(p=>p.programme).filter(Boolean)))].sort((a,b)=>a.localeCompare(b));
-      const course=document.getElementById('homeCourse');courses.slice(0,80).forEach(v=>course.insertAdjacentHTML('beforeend',`<option value="${esc(v)}">${esc(v.length>24?v.slice(0,21)+'…':v)}</option>`));
-      const degrees=[...new Set(courses.map(v=>v.includes('B.Tech')?'B.Tech':v.startsWith('B.S')||v.startsWith('BS')?'B.S.':v.includes('B.Des')?'B.Des':v.includes('B.Pharm')?'B.Pharm':v.includes('MBBS')?'MBBS':v.includes('B.Com')?'B.Com':v.includes('B.A')?'B.A.':v.includes('B.Sc')?'B.Sc.':v.includes('LL.B')?'LL.B.':v.includes('M.Tech')?'M.Tech':v.includes('MBA')?'MBA':'Other'))].sort();
-      const degree=document.getElementById('homeDegree');degrees.forEach(v=>degree.insertAdjacentHTML('beforeend',`<option value="${esc(v)}">${esc(v)}</option>`));
-      course.addEventListener('change',()=>{if(course.value)document.getElementById('homeSearch').value=course.value});
-      degree.addEventListener('change',()=>{if(degree.value&&degree.value!=='Other')document.getElementById('homeSearch').value=degree.value});
+    function homeSearch(e){e.preventDefault();const q=document.getElementById('homeSearch').value.trim();const cat=document.getElementById('homeCategory').value;const prog=document.getElementById('homeProgram').value;const exam=document.getElementById('homeExam').value;const mode=document.getElementById('homeMode').value;const p=new URLSearchParams();if(q)p.set('q',q);if(cat)p.set('category',cat);if(prog)p.set('program',prog);if(exam)p.set('exam',exam);if(mode)p.set('mode',mode);location.href='colleges.html?'+p.toString();return false;}
+    function showHomeTier(t){document.getElementById('freeToolsPanel').hidden=t!=='free';document.getElementById('proToolsPanel').hidden=t!=='pro';document.getElementById('freeToggle').classList.toggle('active',t==='free');document.getElementById('proToggle').classList.toggle('active',t==='pro');}
+    function fillHomeFilters(){
+      const cats=[...new Set(COLLEGES.map(c=>c.category))].sort(); const programs=[...new Set(COLLEGES.flatMap(c=>(c.programs||[]).map(p=>p.programme).filter(Boolean)))].sort((a,b)=>a.localeCompare(b)); const exams=[...new Set(COLLEGES.flatMap(c=>(c.programs||[]).map(p=>p.entrance).filter(Boolean)))].sort((a,b)=>a.localeCompare(b));
+      const c=document.getElementById('homeCategory'),p=document.getElementById('homeProgram'),x=document.getElementById('homeExam');
+      cats.forEach(v=>c.insertAdjacentHTML('beforeend',`<option value="${esc(v)}">${esc(v)}</option>`));
+      programs.forEach(v=>p.insertAdjacentHTML('beforeend',`<option value="${esc(v)}">${esc(v.length>45?v.slice(0,42)+'…':v)}</option>`));
+      exams.forEach(v=>x.insertAdjacentHTML('beforeend',`<option value="${esc(v)}">${esc(v.length>55?v.slice(0,52)+'…':v)}</option>`));
     }
-    document.addEventListener('DOMContentLoaded',populateHomeFilters);
+    document.addEventListener('DOMContentLoaded',fillHomeFilters);
   </script>
 </body>
 </html>
