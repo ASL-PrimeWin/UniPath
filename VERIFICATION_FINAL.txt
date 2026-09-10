@@ -1,0 +1,26 @@
+UniPath final verification - 2026-09-10
+
+Reference-matched homepage update:
+- Rebuilt index.html to closely match the supplied reference: white header, blue hero, left text/search, right campus image, floating feature cards, statistics strip, six lower feature cards, and Free/Pro switch.
+- Replaced broken home hero image with a local, self-contained campus image matching the supplied reference composition.
+- Removed broken secondary home-image references from the homepage.
+- Replaced the navigation logo asset with a transparent-background version while preserving the original U + NIPATH design.
+- Added a 64x64 transparent U-style favicon and updated all HTML favicon references.
+- Updated college.html to a reference-style profile layout without changing the underlying team dataset.
+
+Automated checks:
+- HTML files checked: 14
+- Missing local href/src references: 0
+- Homepage image references found: 3
+- Homepage image references missing: 0
+- CSS local url() references missing: 0
+- data.js institutions: 906
+- data.js programme entries: 2,661
+- app.js node --check: PASS
+- All inline <script> blocks node --check: PASS
+- Favicon asset present: PASS
+- ZIP integrity: PASS (created after verification)
+
+Notes:
+- The supplied team CSV was preserved as the source-of-truth dataset already represented by data.js; no data values were rewritten in this visual-only update.
+- A Chromium visual screenshot check was attempted in the execution environment, but Chromium did not terminate cleanly in this environment, so visual verification was completed by direct inspection of the supplied reference screenshots plus static asset/HTML/CSS/JS checks instead of claiming a successful browser render.

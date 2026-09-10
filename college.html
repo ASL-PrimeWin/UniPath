@@ -1,17 +1,39 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>College Details | UniPath</title><link rel="stylesheet" href="style.css"><link rel="icon" href="favicon.svg"></head><body><div id="site-nav"></div>
-<main class="page"><div class="container" id="content"></div></main><div id="site-footer"></div><script src="data.js"></script><script src="app.js"></script>
-<script>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>College Profile | UniPath</title><link rel="stylesheet" href="style.css"><link rel="icon" href="favicon.png"></head><body><div id="site-nav"></div><main class="page detail-reference"><div class="container" id="content"></div></main><div id="site-footer"></div><script src="data.js"></script><script src="app.js"></script><script>
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-const c=getCollege(new URLSearchParams(location.search).get('id')||'iit-madras');
+const id=new URLSearchParams(location.search).get('id')||'iit-madras-ug-programmes';
+const c=getCollege(id);
+function firstVal(key){return (c?.programs||[]).map(p=>String(p[key]||'').trim()).find(Boolean)||'—'}
 if(!c){document.getElementById('content').innerHTML='<div class="empty"><h2>Institution not found</h2><a class="btn" href="colleges.html">Back to Search</a></div>'}
 else{
- const rows=c.programs.map((p,i)=>`<tr><td><strong>${esc(p.programme||'—')}</strong></td><td>${esc(p.courses||'—')}</td><td>${esc(p.eligibility||'—')}</td><td>${esc(p.entrance||'—')}</td><td>${esc(p.mode||'—')}</td><td>${esc(p.duration||'—')}</td><td>${esc(p.fees||'—')}</td></tr>`).join('');
- document.getElementById('content').innerHTML=`<div class="detail-hero"><div class="eyebrow">FREE-TIER COLLEGE PROFILE</div><h1>${esc(c.name)}</h1><p>${esc(c.category)} · ${c.programs.length} programme entries</p><span class="tag">${c.hostel?'Residential option listed':'Mode varies by programme'}</span></div>
- <div class="detail-grid"><div class="info-card"><h3>Profile Summary</h3><div class="info-row"><span>Dataset category</span><strong>${esc(c.category)}</strong></div><div class="info-row"><span>Programme entries</span><strong>${c.programs.length}</strong></div><div class="info-row"><span>Main entrance route</span><strong>${esc(c.exam||'See programme table')}</strong></div></div>
- <div class="info-card"><h3>Use this profile</h3><p class="meta">The table below preserves the programme, course, eligibility, entrance, mode, duration and fee information supplied in the UniPath free-tier sheet.</p><button class="btn small" onclick="compare('${c.id}')">Add to Compare</button> <button class="btn small outline" onclick="saveTier('${c.id}','dream')">Save as Dream</button> <button class="btn small outline" onclick="saveTier('${c.id}','target')">Target</button> <button class="btn small outline" onclick="saveTier('${c.id}','safe')">Safe</button> <a class="btn small outline" href="colleges.html">Back to Search</a></div></div>
- <section class="panel"><div class="section-head"><div class="eyebrow">ALL FREE-TIER DETAILS</div><h2>Programmes & admission information</h2></div><div class="table-wrap"><table><thead><tr><th>Programme</th><th>Courses offered</th><th>Eligibility</th><th>Entrance / Admission</th><th>Mode</th><th>Duration</th><th>Fees</th></tr></thead><tbody>${rows}</tbody></table></div></section>
- <div class="notice">This page reproduces information from the uploaded UniPath free-tier dataset. Fees, eligibility and admission rules can change, so verify current details with the institution before applying.</div>`;
+  const rank=lookupNirfRank(c.category,c.name);
+  const uniquePrograms=[...new Set((c.programs||[]).map(p=>p.programme).filter(Boolean))];
+  const heroBg='home-campus.jpg';
+  const table=(c.programs||[]).map(p=>`<tr><td><strong>${esc(p.programme||'—')}</strong><div class="detail-course-sub">${esc(p.courses||'—')}</div></td><td>${esc(p.duration||'—')}</td><td>${esc(p.entrance||'—')}</td><td>${esc(p.eligibility||'—')}</td><td>${esc(p.fees||'—')}</td></tr>`).join('');
+  const navItems=['overview','courses','admission','fees','hostel','ranking'];
+  document.getElementById('content').innerHTML=`
+  <div class="detail-breadcrumb">Home › Colleges › ${esc(c.name)}</div>
+  <section class="detail-reference-hero" style="--college-bg:url('${heroBg}')">
+    <div class="detail-reference-overlay"></div>
+    <div class="detail-hero-content">
+      <div class="detail-emblem">${esc((c.name||'U').slice(0,2).toUpperCase())}</div>
+      <div><div class="eyebrow" style="color:#9ec9ff">COLLEGE PROFILE</div><h1>${esc(c.name)}</h1><p>${esc(c.category)} · ${esc(uniquePrograms.slice(0,3).join(' · '))}</p><div class="detail-badges"><span>${c.hostel?'Hostel listed':'Hostel not listed'}</span><span>${c.programs.length} programme entries</span>${rank?`<span>NIRF 2025 · #${rank}</span>`:''}</div></div>
+    </div>
+    <div class="detail-match-card"><div class="match-ring">${rank?'#'+rank:'—'}</div><div><strong>${rank?'NIRF 2025 rank':'UniPath profile'}</strong><span>${rank?'Category: '+esc(c.category):'Verified team dataset'}</span><small>Review the official institution page before applying.</small></div></div>
+  </section>
+  <div class="detail-reference-layout">
+    <aside class="detail-sidebar">
+      <a class="active" href="#overview">Overview</a><a href="#courses">Courses</a><a href="#admission">Admission</a><a href="#fees">Fees</a><a href="#hostel">Hostel</a><a href="#ranking">Ranking</a><a href="colleges.html">Back to Search</a>
+      <div class="detail-side-actions"><button class="btn small" onclick="addCompare('${esc(c.id)}')">Add to Compare</button><button class="btn small outline" onclick="saveTier('${esc(c.id)}','dream')">Save Dream</button></div>
+    </aside>
+    <div class="detail-main">
+      <section id="overview" class="detail-panel"><div class="eyebrow">OVERVIEW</div><h2>About ${esc(c.name)}</h2><p class="detail-lead">This UniPath profile organizes the college and programme information supplied in the team free-tier dataset.</p><div class="detail-metric-grid"><div><span>Category</span><strong>${esc(c.category)}</strong></div><div><span>Programme entries</span><strong>${c.programs.length}</strong></div><div><span>Main entrance route</span><strong>${esc(firstVal('entrance'))}</strong></div><div><span>Hostel</span><strong>${c.hostel?'Listed':'Not listed'}</strong></div></div></section>
+      <section id="courses" class="detail-panel"><div class="detail-panel-head"><div><div class="eyebrow">PROGRAMMES</div><h2>Courses & programmes</h2></div><span class="count-pill">${uniquePrograms.length} programme types</span></div><div class="table-wrap"><table><thead><tr><th>Programme & courses</th><th>Duration</th><th>Entrance / Admission</th><th>Eligibility</th><th>Fees</th></tr></thead><tbody>${table}</tbody></table></div></section>
+      <div class="detail-two-col"><section id="admission" class="detail-panel"><div class="eyebrow">ADMISSION</div><h2>How admission works</h2><p>${esc(firstVal('entrance'))}</p><div class="info-row"><span>Typical mode</span><strong>${esc(firstVal('mode'))}</strong></div></section><section id="fees" class="detail-panel"><div class="eyebrow">FEES</div><h2>Fee information</h2><p>${esc(firstVal('fees'))}</p><div class="info-row"><span>Note</span><strong>Tuition text from team dataset</strong></div></section></div>
+      <div class="detail-two-col"><section id="hostel" class="detail-panel"><div class="eyebrow">HOSTEL</div><h2>Hostel availability</h2><p>${c.hostel?'Hostel is listed in the UniPath team dataset.':'Hostel is not listed in the UniPath team dataset.'}</p></section><section id="ranking" class="detail-panel"><div class="eyebrow">RANKING</div><h2>NIRF 2025</h2><div class="ranking-big">${rank?'#'+rank:'—'}</div><p>${rank?'Verified NIRF rank mapped to this institution and category.':'A verified rank is not stored for this institution in the current NIRF map.'}</p></section></div>
+      <div class="notice">Programme, eligibility, entrance, mode, duration and fee text above comes from the UniPath team free-tier dataset. Check the institution’s current official information before applying.</div>
+    </div>
+  </div>`;
 }
-function compare(id){let a=JSON.parse(localStorage.getItem('unipathCompare')||'[]');if(!a.includes(id))a.push(id);if(a.length>2)a=a.slice(-2);localStorage.setItem('unipathCompare',JSON.stringify(a));alert('Added to comparison. Open Compare from the navigation.')}
-function saveTier(id,tier){let a=JSON.parse(localStorage.getItem('unipathMatches')||'[]');if(!a.includes(id))a.unshift(id);localStorage.setItem('unipathMatches',JSON.stringify(a));let x=JSON.parse(localStorage.getItem('unipathTiers')||'{}');x[id]=tier;localStorage.setItem('unipathTiers',JSON.stringify(x));alert('Saved to '+tier+'. Open My Shortlist to manage it.')}
+function addCompare(id){let a=JSON.parse(localStorage.getItem('unipathCompare')||'[]');if(!a.includes(id))a.push(id);if(a.length>2)a=a.slice(-2);localStorage.setItem('unipathCompare',JSON.stringify(a));location.href='compare.html'}
+function saveTier(id,tier){let a=JSON.parse(localStorage.getItem('unipathMatches')||'[]');if(!a.includes(id))a.push(id);localStorage.setItem('unipathMatches',JSON.stringify(a));let t=JSON.parse(localStorage.getItem('unipathTiers')||'{}');t[id]=tier;localStorage.setItem('unipathTiers',JSON.stringify(t));alert('Saved to your '+tier+' list.')}
 </script></body></html>
