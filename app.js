@@ -15,7 +15,6 @@ function nav(){
       </nav>
       <div class="nav-actions">
         <a class="btn outline nav-login" href="register.html">Login / Sign Up</a>
-        <a class="btn premium-nav-btn" href="payment.html">Get Premium</a>
       </div>
       <button class="mobile-menu" aria-label="Open menu" onclick="document.body.classList.toggle('menu-open')">☰</button>
     </div>
