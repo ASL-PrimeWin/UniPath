@@ -1,0 +1,17 @@
+institutions: PASS
+program_rows: PASS
+data_js_exists: PASS
+index_exists: PASS
+rankings_exists: PASS
+find_exists: PASS
+register_exists: PASS
+missing_local_refs: PASS
+nirf_meta_15: PASS
+nirf_rank_object: PASS
+data_starts_with_colleges: PASS
+find_uses_full_dataset: PASS
+search_uses_full_dataset: PASS
+login_points_register: PASS
+home_has_tier_toggle: PASS
+Local reference failures: []
+Total files: 35
